@@ -1,4 +1,4 @@
-/*#region Regole Principali  */
+/*#region Regole Principali */
 
 /* Font da google */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
@@ -10,5 +10,106 @@
     font-family: 'Poppins', sans-serif;;
 }
 
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: #E3F2FD;
+}
+
+/*#endregion */
+
+/*#region Common Rules */
+.container .wrapper,
+.editor-panel .options,
+.filter .slider .filter-info {
+    display: flex;
+}
+
+.editor-panel .options,
+.filter .slider .filter-info {
+    justify-content: space-between;
+}
+
+
+.container,
+.editor-panel button {
+    background: #fff;
+}
+
+/*#endregion */
+
+/*#region Container Rules */
+.container {
+    width: 850px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    padding: 30px 35px 35px;
+}
+
+.container h2 {
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.container .wrapper {
+    margin: 20px 0;
+    min-height: 335px;
+}
+/*#endregion */
+
+/*#region Editor Panel Rules */
+.wrapper .editor-panel {
+    border: 1px solid #ccc;
+    padding: 15px 20px;
+    width: 280px;
+    border-radius: 5px;
+}
+
+.editor-panel .title {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 12px;
+}
+
+.editor-panel .options {
+    flex-wrap: wrap;
+}
+
+/* Buttons per Luminosità, saturazione ecc */
+.editor-panel button {
+    height: 40px;
+    font-size: 14px;
+    color: #6c757d;
+    margin-bottom: 8px;
+    border: 1px solid #aaa;
+    border-radius: 3px;
+}
+/* Buttons per Luminosità - Effetto hover */
+.editor-panel button:hover {
+    background: #f5f5f5;
+}
+.editor-panel .filter button {
+    width: calc(100% / 2 - 4px);
+}
+/* Buttons per Luminosità - Effetto active */
+.filter button.active {
+    background: #5372f0;
+    color: #fff;
+    border-color: #5372f0;
+}
+.filter .slider {
+    margin-top: 12px;
+}
+
+.filter .slider .filter-info {
+    justify-content: space-between;
+    color: #464646;
+}
+
+.editor-panel .rotate button {
+    width: calc(100% / 4 - 3px);
+}
 
 /*#endregion */
