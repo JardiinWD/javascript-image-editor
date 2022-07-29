@@ -16,8 +16,48 @@
 </head>
 <body>
     
-
-
+    <!-- Container Principale -->
+    <div class="container">
+        <h2>Image Editor</h2>
+        <!-- /.wrapper -->        
+        <div class="wrapper">
+            <!-- /.editor-panel -->            
+            <div class="editor-panel">
+                <!-- /.filter -->
+                <div class="filter">
+                    <!-- /.title -->
+                    <label class="title">Filters</label>
+                    <!-- /.options -->
+                    <div class="options">
+                        <!-- Luminosità -->
+                        <button>Brightness</button>
+                        <!-- Saturazione -->
+                        <button>Saturation</button>
+                        <!-- / -->
+                        <button>Inversion</button>
+                        <!-- Scala di grigi -->
+                        <button>Grays</button>
+                    </div>
+                    <!-- /.slider -->
+                    <div class="slider">
+                        <!-- /.filter-info -->
+                        <div class="filter-info">
+                            <!-- /.name -->
+                            <p class="name">Brightness</p>
+                            <!-- /.value -->
+                            <p class="value">100%</p>
+                        </div>
+                        <!-- Input -->
+                        <input type="range" value="100" min="0" max="200">
+                    </div>
+                </div>
+                <!-- /.rotate -->
+                <div class="rotate"></div>
+            </div>
+            <!-- /.preview-img -->
+            <div class="preview-img"></div>
+        </div>
+    </div>
 
     <!-- Link a JS -->
     <script src='./assets/js/app.js'></script>
