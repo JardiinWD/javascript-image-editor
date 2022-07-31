@@ -11,9 +11,6 @@
 }
 
 body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     min-height: 100vh;
     background: #E3F2FD;
 }
@@ -21,6 +18,16 @@ body {
 /*#endregion */
 
 /*#region Common Rules */
+
+body,
+.wrapper .preview-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
 .container .wrapper,
 .editor-panel .options,
 .filter .slider .filter-info {
@@ -146,6 +153,7 @@ body {
 /*#region Preview Img */
 .wrapper .preview-img {
     margin-left: 20px;
+    flex-grow: 1;
 }
 
 .preview-img img {
@@ -190,3 +198,35 @@ body {
 
 
 /*#endregion */
+
+/*#region Media Queries */
+
+@media screen and (max-width: 760px) {
+    .container {
+        padding: 25px;
+    }
+    .container .wrapper {
+        flex-wrap: wrap-reverse;
+    }
+    .wrapper .editor-panel,
+    .wrapper .preview-img {
+        width: 100%;
+    }
+    .wrapper .preview-img {
+        margin: 0 0 15px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .controls button,
+    .controls .row {
+        width: 100%;
+    }
+    .controls button {
+        margin-bottom: 10px;
+    }
+    .controls .row .save-img {
+        margin-left: 0px;
+    }
+}
+/*#endregion Media Queries */
