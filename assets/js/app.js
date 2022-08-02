@@ -35,9 +35,21 @@ grayscale = 0 // Valore default 0
 console.log(`Luminosità : ${brightness}, Saturazione : ${saturation} , Inversione : ${inversion}, Scala di grigi : ${grayscale} `); // Verifica in console log
 
 
+
+
 //#endregion
 
 //#region Funzioni
+
+/* #7 - Creo la mia function per applicare i filtri */
+const applyFilters = () => {
+    /* brightness() => funzione per la luminosità */
+    /* saturate() => funzione per la saturazione */
+    /* invert() => funzione per l'inversione dei colori */
+    /* grayscale() => funzione per scala di grigi */
+    previewImg.style.filter = `brightness(${brightness}%) saturate(${saturation}%) invert(${inversion}%) grayscale(${grayscale}%) `
+}
+
 
 /* #1.4 - Avvio la mia arrow function loadImage */
 const loadImage = () => {
@@ -82,8 +94,6 @@ filterOptions.forEach(option => {
             filterSlider.value = grayscale
             filterValue.innerText = `${grayscale}%`
         }
-
-
     })
     console.log(option); // Queste sono tutte le mie option
 })
@@ -112,6 +122,9 @@ const updateFilter = () => {
         /* Stesso discorso di sopra */
         grayscale = filterSlider.value
     }
+
+    /* Invoco la funzione per attivare i filtri all'immagine */
+    applyFilters();
 }
 
 
