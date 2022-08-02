@@ -18,8 +18,21 @@ filterOptions = document.querySelectorAll(".filter button") // Seleziono tutti i
 /* console.log(filterOptions); */ // Verifico in console
 
 /* #4 - Cambio dei nomi dei miei filtri */
-filterName = document.querySelector(".filter-info .name")
+filterName = document.querySelector(".filter-info .name") // Seleziono il paragrafo con classe name
 console.log(filterName); // Verifico in console
+
+/* #5 - Modifiche sull'input range (slider) */
+filterSlider = document.querySelector(".slider input") // seleziono l'input
+console.log(filterSlider); // Verifico in console
+filterValue = document.querySelector(".filter-info .value") // Seleziono il testo del mio range 
+console.log(filterValue); // Verifico in console
+
+/* #6 - Ora lavoro sui singoli filtri */
+let brightness = 100 // Valore default 100
+saturation = 100 // Valore default 100
+inversion = 0 // Valore default 0
+grayscale = 0 // Valore default 0
+console.log(`Luminosità : ${brightness}, Saturazione : ${saturation} , Inversione : ${inversion}, Scala di grigi : ${grayscale} `); // Verifica in console log
 
 
 //#endregion
@@ -50,6 +63,32 @@ filterOptions.forEach(option => {
     console.log(option); // Queste sono tutte le mie option
 })
 
+/* #5.3 - Avvio la mia arrowFunction per l'update */
+const updateFilter = () => {
+    /* console.log(`Questo è il valore del mio slider : ${filterSlider.value}`); */ // Verifico il valore (da 0 a 200) del mio slider
+    filterValue.innerText = `${filterSlider.value}%`
+    /* #6.1 - Ora lavoro sui singoli filtri */
+    const selectedFilter = document.querySelector(".filter .active") // #6.2 - Faccio la selezione sui miei filtri in base a quello attivo
+
+    /* #6.3 - Avvio una condizione con tutti i miei filtri e gli id ad essi associati */
+    if (selectedFilter.id === "brightness") {
+        /* variabile let sopra = valore dell'input */
+        brightness = filterSlider.value
+    }
+    else if (selectedFilter.id === "saturation") {
+        /* Stesso discorso di sopra */
+        saturation = filterSlider.value
+    }
+    else if (selectedFilter.id === "inversion") {
+        /* Stesso discorso di sopra */
+        inversion = filterSlider.value
+    }
+    else {
+        /* Stesso discorso di sopra */
+        grayscale = filterSlider.value
+    }
+}
+
 
 //#endregion
 
@@ -58,6 +97,9 @@ filterOptions.forEach(option => {
 
 /* #1.3 - Al mio fileInput scateno un evento per il cambiamento */
 fileInput.addEventListener("change", loadImage)
+
+/* #5.2 - Al mio input type range scateno un evento che aggiorna costantemente il valore del filtro */
+filterSlider.addEventListener("input", updateFilter)
 
 // #1.2 - Scateno evento sul mio button per selezionare immagine
 // al click sul button prende le stesse funzioni del input type file 
