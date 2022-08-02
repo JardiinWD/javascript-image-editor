@@ -13,24 +13,24 @@ Oltre ai filtri sono stati implementati dei button per :
 
 Condizione iniziale dell'app con bottoni disabilitati poichè in assenza di un'immagine da editare
 
-![Inizio](./condizione-iniziale.jpg)
+![Inizio](./assets/img/condizione-iniziale.jpg)
 
 Versione del sito responsive (Tablet mode)
 
-![Tablet](./sezione-tablet.jpg)
+![Tablet](./assets/img/sezione-tablet.jpg)
 
 Versione del sito responsive (Mobile mode)
 
-![Mobile Phone](./sezione-mobile.png)
+![Mobile Phone](./assets/img/sezione-mobile.png)
 
 Attivazione del pulsante e ricerca dell'immagine all'interno delle cartelle locali utente
 
-![Click sul pulsante per cercare immagine](./click-choose.jpg)
+![Click sul pulsante per cercare immagine](./assets/img/click-choose.jpg)
 
 Attivazione di tutti i pulsanti dato che il sito ha rilevato l'immagine. Il primo tasto attivo solitamente è la luminosità (ma al click la classe active cambia in base al pulsante cliccato). i filtri sono regolati tramite un input range (diverso per ogni sezione di filtro) e vi è la possibilità di resettare anche i filtri.
 
-![Sezione dell'APP una volta che ha ricevuto immagine](./attivazione-app.jpg)
+![Sezione dell'APP una volta che ha ricevuto immagine](./assets/img/attivazione-app.jpg)
 
 Una volta applicato i vari filtri alla mia immagine, cliccando sul tasto "save image" avvia il download dell'immagine modificata e permette all'utente di salvarla nelle sue cartelle locali.
 
-![Salvare Immagine](./save-image.jpg)
+![Salvare Immagine](./assets/img/save-image.jpg)
