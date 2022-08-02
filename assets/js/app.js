@@ -21,6 +21,11 @@ filterOptions = document.querySelectorAll(".filter button") // Seleziono tutti i
 filterName = document.querySelector(".filter-info .name") // Seleziono il paragrafo con classe name
 console.log(filterName); // Verifico in console
 
+/* #8 - Lavoro su opzioni rotazione immagine */
+rotateOptions = document.querySelectorAll(".rotate button") // Seleziono tutti i button presenti nelle mie opzioni (per quello querySelectorAll)
+console.log(rotateOptions);
+
+
 /* #5 - Modifiche sull'input range (slider) */
 filterSlider = document.querySelector(".slider input") // seleziono l'input
 console.log(filterSlider); // Verifico in console
@@ -32,10 +37,11 @@ let brightness = 100 // Valore default 100
 saturation = 100 // Valore default 100
 inversion = 0 // Valore default 0
 grayscale = 0 // Valore default 0
-console.log(`Luminosità : ${brightness}, Saturazione : ${saturation} , Inversione : ${inversion}, Scala di grigi : ${grayscale} `); // Verifica in console log
+/* console.log(`Luminosità : ${brightness}, Saturazione : ${saturation} , Inversione : ${inversion}, Scala di grigi : ${grayscale} `); */ // Verifica in console log
 
 
-
+/* #8.1 aggiungo ulteriori variabili per la rotazione e lo stretch per le mie immagini */
+let rotate = 0
 
 //#endregion
 
@@ -43,11 +49,17 @@ console.log(`Luminosità : ${brightness}, Saturazione : ${saturation} , Inversio
 
 /* #7 - Creo la mia function per applicare i filtri */
 const applyFilters = () => {
-    /* brightness() => funzione per la luminosità */
-    /* saturate() => funzione per la saturazione */
-    /* invert() => funzione per l'inversione dei colori */
-    /* grayscale() => funzione per scala di grigi */
+
+    /* #8.4 - avvio le modifiche alla mia immagine */
+    previewImg.style.transform = `rotate(${rotate}deg)`
+
+    /* brightness() => funzione per la luminosità || saturate() => funzione per la saturazione */
+    /* invert() => funzione per l'inversione dei colori || grayscale() => funzione per scala di grigi */
+
+    /* #7.1 - Applico i filtri */
     previewImg.style.filter = `brightness(${brightness}%) saturate(${saturation}%) invert(${inversion}%) grayscale(${grayscale}%) `
+
+
 }
 
 
@@ -123,13 +135,28 @@ const updateFilter = () => {
         grayscale = filterSlider.value
     }
 
-    /* Invoco la funzione per attivare i filtri all'immagine */
+    /* #7.2 - Invoco la funzione per attivare i filtri all'immagine */
     applyFilters();
 }
 
+/* #8.2 - Avvio ciclo forEach per selezionare tutti i miei button per la rotazione dell'immagine */
+rotateOptions.forEach(option => {
+    option.addEventListener("click", () => {
+        /* #8.3 - Avvio una condizione per la rotazione in base al click */
+        if (option.id === "left") {
+            rotate = rotate - 90 // Se il bottone per la sx è cliccato decrementa il valore a -90
+        }
+        else if (option.id === "right") {
+            rotate = rotate + 90 // Se il bottone per la sx è cliccato incrementa il valore a +90
+        }
+
+        /* #8.5 - Invoco la funzione */
+        applyFilters();
+    })
+})
+
 
 //#endregion
-
 
 //#region Eventi
 
