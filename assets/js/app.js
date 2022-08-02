@@ -32,6 +32,10 @@ console.log(filterSlider); // Verifico in console
 filterValue = document.querySelector(".filter-info .value") // Seleziono il testo del mio range 
 console.log(filterValue); // Verifico in console
 
+/* #9 - Reset filter */
+resetFilterButton = document.querySelector(".reset-filter")
+console.log(filterSlider); // Verifico in console
+
 /* #6 - Ora lavoro sui singoli filtri */
 let brightness = 100 // Valore default 100
 saturation = 100 // Valore default 100
@@ -44,8 +48,6 @@ grayscale = 0 // Valore default 0
 let rotate = 0
 let flipHorizontal = 1 // in caso di click sullo tasto orizzontale
 let flipVertical = 1 // in caso di click sullo tasto verticale
-
-
 
 //#endregion
 
@@ -64,7 +66,6 @@ const applyFilters = () => {
     previewImg.style.filter = `brightness(${brightness}%) saturate(${saturation}%) invert(${inversion}%) grayscale(${grayscale}%) `
 
 }
-
 
 /* #1.4 - Avvio la mia arrow function loadImage */
 const loadImage = () => {
@@ -162,12 +163,27 @@ rotateOptions.forEach(option => {
             /* se il valore iniziale è 1 allora lo setto a -1, altrimenti il valore verrà settato a 1 */
             flipVertical = flipVertical === 1 ? -1 : 1
         }
-
-
         /* #8.5 - Invoco la funzione */
         applyFilters();
     })
 })
+
+/* #9.2 - Avvio la mia arrow Function per resettare */
+const resetFilter = () => {
+    /* #9.3 - Resetto tutto */
+    brightness = 100 // Valore default 100
+    saturation = 100 // Valore default 100
+    inversion = 0 // Valore default 0
+    grayscale = 0 // Valore default 0
+    rotate = 0 // Angolo di rotazione iniziale
+    flipHorizontal = 1 // in caso di click sullo tasto orizzontale
+    flipVertical = 1 // in caso di click sullo tasto verticale
+
+    filterOptions[0].click() // cliccando sul reset mi riporta di default sull'opzione luminosità
+
+    /* 9.4 - Invoco la mia funzione per applicare i filtri */
+    applyFilters();
+}
 
 
 //#endregion
@@ -183,6 +199,10 @@ filterSlider.addEventListener("input", updateFilter)
 // #1.2 - Scateno evento sul mio button per selezionare immagine
 // al click sul button prende le stesse funzioni del input type file 
 chooseImgBtn.addEventListener("click", () => fileInput.click())
+
+/* #9.1 - Scateno un evento sul mio reset Button */
+resetFilterButton.addEventListener("click", resetFilter)
+
 
 //#endregion
 
