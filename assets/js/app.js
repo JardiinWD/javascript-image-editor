@@ -15,7 +15,12 @@ previewImg = document.querySelector(".preview-img img") // Seleziono il mio tag 
 
 /* #3 - Bottoni per i filtri */
 filterOptions = document.querySelectorAll(".filter button") // Seleziono tutti i button presenti nel wrapper Filter
-/* console.log(filterOptions);  */// Verifico in console
+/* console.log(filterOptions); */ // Verifico in console
+
+/* #4 - Cambio dei nomi dei miei filtri */
+filterName = document.querySelector(".filter-info .name")
+console.log(filterName); // Verifico in console
+
 
 //#endregion
 
@@ -40,6 +45,7 @@ filterOptions.forEach(option => {
         // #3.2 Aggiungo evento al click per ogni bottone filtrato
         document.querySelector(".filter .active").classList.remove("active") // #3.3 Seleziono il mio wrapper filter e rimuovo la classe active
         option.classList.add("active") // #3.4 soltanto per attivarlo poi su tutte, ad ogni click
+        filterName.innerHTML = option.innerText // #4.1 al mio input type range, ad ogni click sui button cambio il valore del testo. prenderà quello del bottone attivo
     })
     console.log(option); // Queste sono tutte le mie option
 })
