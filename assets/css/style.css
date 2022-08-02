@@ -64,6 +64,12 @@ body,
     padding: 30px 35px 35px;
 }
 
+/* Necessaria per disabilitare i button per filtri e per modifica se l'immagine non è caricata */
+.container.disable :where(.editor-panel, .reset-filter, .save-img) {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
 .container h2 {
     font-size: 22px;
     font-weight: 500;
