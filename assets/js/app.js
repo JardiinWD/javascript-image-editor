@@ -2,26 +2,24 @@
 
 //#region Variabili e costanti
 
-//#region Input Image
-
 // #1 - Seleziono il mio input (image) tramite query
 const fileInput = document.querySelector(".file-input")
 // #1.1 - Seleziono anche il mio button choose-img
 chooseImgBtn = document.querySelector(".choose-img")
-console.log(fileInput); // Verifico in console
-console.log(chooseImgBtn); // Verifico in console
-
-//#endregion Input Image
+/* console.log(fileInput);  */// Verifico in console
+/* console.log(chooseImgBtn); */ // Verifico in console
 
 /* #2 - Mostrare immagine nell'editor */
 previewImg = document.querySelector(".preview-img img") // Seleziono il mio tag img 
-console.log(previewImg); // Verifico in console
+/* console.log(previewImg); */ // Verifico in console
+
+/* #3 - Bottoni per i filtri */
+filterOptions = document.querySelectorAll(".filter button") // Seleziono tutti i button presenti nel wrapper Filter
+/* console.log(filterOptions);  */// Verifico in console
 
 //#endregion
 
 //#region Funzioni
-
-//#region Input Image
 
 /* #1.4 - Avvio la mia arrow function loadImage */
 const loadImage = () => {
@@ -36,7 +34,16 @@ const loadImage = () => {
     })
 }
 
-//#endregion Input Image
+/* #3.1 avvio ciclo forEach per scatenare eventi a tutti i miei button dei filtri */
+filterOptions.forEach(option => {
+    option.addEventListener("click", () => {
+        // #3.2 Aggiungo evento al click per ogni bottone filtrato
+        document.querySelector(".filter .active").classList.remove("active") // #3.3 Seleziono il mio wrapper filter e rimuovo la classe active
+        option.classList.add("active") // #3.4 soltanto per attivarlo poi su tutte, ad ogni click
+    })
+    console.log(option); // Queste sono tutte le mie option
+})
+
 
 //#endregion
 
