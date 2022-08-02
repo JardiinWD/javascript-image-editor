@@ -59,6 +59,31 @@ filterOptions.forEach(option => {
         document.querySelector(".filter .active").classList.remove("active") // #3.3 Seleziono il mio wrapper filter e rimuovo la classe active
         option.classList.add("active") // #3.4 soltanto per attivarlo poi su tutte, ad ogni click
         filterName.innerHTML = option.innerText // #4.1 al mio input type range, ad ogni click sui button cambio il valore del testo. prenderà quello del bottone attivo
+
+        /* #6.4 - Eseguo una selezione di ogni filtro associando loro il valore senza intaccare gli altri */
+        if (option.id === "brightness") {
+            /* Valore del mio input = variabile che devo regolare */
+            filterSlider.max = "200"
+            filterSlider.value = brightness
+            filterValue.innerText = `${brightness}%`
+        }
+        else if (option.id === "saturation") {
+            filterSlider.max = "200"
+            filterSlider.value = saturation
+            filterValue.innerText = `${saturation}%`
+        }
+        else if (option.id === "inversion") {
+            filterSlider.max = "100"
+            filterSlider.value = inversion
+            filterValue.innerText = `${inversion}%`
+        }
+        else {
+            filterSlider.max = "100"
+            filterSlider.value = grayscale
+            filterValue.innerText = `${grayscale}%`
+        }
+
+
     })
     console.log(option); // Queste sono tutte le mie option
 })
