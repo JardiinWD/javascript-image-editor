@@ -19,22 +19,25 @@ filterOptions = document.querySelectorAll(".filter button") // Seleziono tutti i
 
 /* #4 - Cambio dei nomi dei miei filtri */
 filterName = document.querySelector(".filter-info .name") // Seleziono il paragrafo con classe name
-console.log(filterName); // Verifico in console
+/* console.log(filterName); */ // Verifico in console
 
 /* #8 - Lavoro su opzioni rotazione immagine */
 rotateOptions = document.querySelectorAll(".rotate button") // Seleziono tutti i button presenti nelle mie opzioni (per quello querySelectorAll)
-console.log(rotateOptions);
-
+/* console.log(rotateOptions); */
 
 /* #5 - Modifiche sull'input range (slider) */
 filterSlider = document.querySelector(".slider input") // seleziono l'input
-console.log(filterSlider); // Verifico in console
+/* console.log(filterSlider); */ // Verifico in console
 filterValue = document.querySelector(".filter-info .value") // Seleziono il testo del mio range 
-console.log(filterValue); // Verifico in console
+/* console.log(filterValue); */ // Verifico in console
 
 /* #9 - Reset filter */
 resetFilterButton = document.querySelector(".reset-filter")
-console.log(filterSlider); // Verifico in console
+/* console.log(filterSlider); */ // Verifico in console
+
+/* #10 - Save Button */
+saveImgButton = document.querySelector(".save-img")
+/* console.log(saveImgButton); */ // Verifico in console
 
 /* #6 - Ora lavoro sui singoli filtri */
 let brightness = 100 // Valore default 100
@@ -42,7 +45,6 @@ saturation = 100 // Valore default 100
 inversion = 0 // Valore default 0
 grayscale = 0 // Valore default 0
 /* console.log(`Luminosità : ${brightness}, Saturazione : ${saturation} , Inversione : ${inversion}, Scala di grigi : ${grayscale} `); */ // Verifica in console log
-
 
 /* #8.1 aggiungo ulteriori variabili per la rotazione e lo stretch per le mie immagini */
 let rotate = 0
@@ -71,10 +73,11 @@ const applyFilters = () => {
 const loadImage = () => {
     let file = fileInput.files[0]; // Prendo il file selezionato dall'utente
     if (!file) return // Esegui un return se l'utente non ha selezionato alcun file
-    console.log(file); // Verifica del file
+    /* console.log(file); */ // Verifica del file
     previewImg.src = URL.createObjectURL(file) // #2.1 Alla mia immagine di preview appendo quella selezionata dall'utente
     /* #2.2 - Rimuovo blocco sui button ed edit del file in caso venga caricata immagine */
     previewImg.addEventListener("load", () => {
+        resetFilterButton.click() // Resetto i filtri in modo tale da avere una nuova immagine coi filtri resettati
         /* Seleziono il mio container e gli rimuovo la classe disable */
         document.querySelector(".container").classList.remove("disable")
     })
@@ -111,7 +114,7 @@ filterOptions.forEach(option => {
             filterValue.innerText = `${grayscale}%`
         }
     })
-    console.log(option); // Queste sono tutte le mie option
+    /* console.log(option); */ // Queste sono tutte le mie option
 })
 
 /* #5.3 - Avvio la mia arrowFunction per l'update */
@@ -185,6 +188,33 @@ const resetFilter = () => {
     applyFilters();
 }
 
+/* #10.2 - preparo la function per il salvataggio dell'immagine */
+const saveImage = () => {
+    /* console.log("Stai cliccando su Salva immagine"); */
+
+    /* #10.3 - setto larghezza e altezza della mia canvas */
+    const canvas = document.createElement("canvas") // Creo l'elemento
+    const ctx = canvas.getContext("2d") // Ritorna un drawing contenente il canvas
+    canvas.width = previewImg.naturalWidth // setto la canvas con la larghezza attuale
+    canvas.height = previewImg.naturalHeight // setto la canvas con l'altezza attuale
+
+    /* #10.4 - Applico i miei filtri di luminosità ecc all'immagine da salvare */
+    ctx.filter = `brightness(${brightness}%) saturate(${saturation}%) invert(${inversion}%) grayscale(${grayscale}%) `
+    ctx.translate(canvas.width / 2, canvas.height / 2) // traslazione della canvas dal centro
+    if (rotate !== 0) {
+        /*  Se il valore di rotate è diverso da 0 applico la rotazione della canvas */
+        ctx.rotate(rotate * Math.PI / 180)
+    }
+    ctx.scale(flipHorizontal, flipVertical);
+    ctx.drawImage(previewImg, -canvas.width / 2, -canvas.height / 2, canvas.width, canvas.height)
+    /* document.body.appendChild(canvas) */ // Per mostrare a schermo il risultato
+
+    /* #10.5 - Salvo l'immagine */
+    const link = document.createElement("a") // creo un ancor tag
+    link.download = "image.jpg" // nome dell'immagine
+    link.href = canvas.toDataURL() // passo al ref dell'ancor tag al mio data url
+    link.click() // cliccando sul button parte il download dell'immagine appena modificata
+}
 
 //#endregion
 
@@ -203,6 +233,8 @@ chooseImgBtn.addEventListener("click", () => fileInput.click())
 /* #9.1 - Scateno un evento sul mio reset Button */
 resetFilterButton.addEventListener("click", resetFilter)
 
+/* #10.1 - Scateno evento sul button per salvare immagine */
+saveImgButton.addEventListener("click", saveImage)
 
 //#endregion
 
