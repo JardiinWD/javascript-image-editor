@@ -42,6 +42,10 @@ grayscale = 0 // Valore default 0
 
 /* #8.1 aggiungo ulteriori variabili per la rotazione e lo stretch per le mie immagini */
 let rotate = 0
+let flipHorizontal = 1 // in caso di click sullo tasto orizzontale
+let flipVertical = 1 // in caso di click sullo tasto verticale
+
+
 
 //#endregion
 
@@ -50,15 +54,14 @@ let rotate = 0
 /* #7 - Creo la mia function per applicare i filtri */
 const applyFilters = () => {
 
-    /* #8.4 - avvio le modifiche alla mia immagine */
-    previewImg.style.transform = `rotate(${rotate}deg)`
+    /* #8.4 - avvio le modifiche alla mia immagine, per rotazione e specchia */
+    previewImg.style.transform = `rotate(${rotate}deg) scale(${flipHorizontal}, ${flipVertical})`
 
     /* brightness() => funzione per la luminosità || saturate() => funzione per la saturazione */
     /* invert() => funzione per l'inversione dei colori || grayscale() => funzione per scala di grigi */
 
     /* #7.1 - Applico i filtri */
     previewImg.style.filter = `brightness(${brightness}%) saturate(${saturation}%) invert(${inversion}%) grayscale(${grayscale}%) `
-
 
 }
 
@@ -149,6 +152,17 @@ rotateOptions.forEach(option => {
         else if (option.id === "right") {
             rotate = rotate + 90 // Se il bottone per la sx è cliccato incrementa il valore a +90
         }
+        else if (option.id === "horizontal") {
+            /* Avvio un operatore ternario dove dico che */
+            /* se il valore iniziale è 1 allora lo setto a -1, altrimenti il valore verrà settato a 1 */
+            flipHorizontal = flipHorizontal === 1 ? -1 : 1
+        }
+        else if (option.id === "vertical") {
+            /* Avvio un operatore ternario dove dico che */
+            /* se il valore iniziale è 1 allora lo setto a -1, altrimenti il valore verrà settato a 1 */
+            flipVertical = flipVertical === 1 ? -1 : 1
+        }
+
 
         /* #8.5 - Invoco la funzione */
         applyFilters();
